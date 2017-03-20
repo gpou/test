@@ -1,0 +1,29 @@
+{
+  "name": "copyPropertyToProperties",
+  "version": "1.0.1",
+  "description": "Workflow to copy a property and its listings to other properties and their listings",
+  "lambdaAttributes": {
+    "version": "63",
+    "timeout": "30",
+    "memorySize": "192"
+  },
+  "swfAttributes": {
+    "defaultExecutionStartToCloseTimeout": "18000",
+    "defaultTaskStartToCloseTimeout": "7200",
+    "workflowExecutionRetentionPeriodInDays": "15",
+    "workflowCleanupTimeBeforeTimeout": "20"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocka"
+  },
+  "dependencies": {
+    "async": "~2.1.2",
+    "lodash": "~4.17.2"
+  },
+  "devDependencies": {
+    "mocha": "~2.4.5",
+    "swagger-client": "~2.1.13"
+  },
+  "private": true
+}

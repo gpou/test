@@ -1,0 +1,29 @@
+{
+  "name": "copyListingToListings",
+  "version": "1.0.0",
+  "description": "Workflow to copy a listing or property to other listings from the same property or to the master property",
+  "lambdaAttributes": {
+    "version": "76",
+    "timeout": "30",
+    "memorySize": "192"
+  },
+  "swfAttributes": {
+    "defaultExecutionStartToCloseTimeout": "1500",
+    "defaultTaskStartToCloseTimeout": "1200",
+    "workflowExecutionRetentionPeriodInDays": "15",
+    "workflowCleanupTimeBeforeTimeout": "20"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocka"
+  },
+  "dependencies": {
+    "async": "~2.1.2",
+    "lodash": "~4.17.2"
+  },
+  "devDependencies": {
+    "mocha": "~2.4.5",
+    "swagger-client": "~2.1.13"
+  },
+  "private": true
+}

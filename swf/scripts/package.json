@@ -1,0 +1,15 @@
+{
+  "name": "swf",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "async": "^2.0.0-rc.3",
+    "cli-color": "^1.1.0",
+    "minimist": "^1.2.0",
+    "lodash-compat": "^3.5.0",
+    "aws-sdk": "^2.1.45",
+    "lodash": "^3.10.1",
+    "oauth": "~0.9.14",
+    "github": "~1.1.2"
+  }
+}

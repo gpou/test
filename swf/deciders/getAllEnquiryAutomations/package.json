@@ -1,0 +1,33 @@
+{
+  "name": "getAllEnquiryAutomations",
+  "version": "1.0.1",
+  "description": "Decider description",
+  "lambdaAttributes": {
+    "version": "46",
+    "timeout": "30",
+    "memorySize": "192"
+  },
+  "swfAttributes": {
+    "defaultExecutionStartToCloseTimeout": "10800",
+    "defaultTaskStartToCloseTimeout": "7200",
+    "workflowExecutionRetentionPeriodInDays": "15",
+    "workflowCleanupTimeBeforeTimeout": "20"
+  },
+  "cronAttributes": {
+    "schedule": "cron(0 0 * * ? *)",
+    "retries": 5
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocka"
+  },
+  "dependencies": {
+    "async": "~2.1.2",
+    "lodash": "~4.17.2"
+  },
+  "devDependencies": {
+    "mocha": "~2.4.5",
+    "swagger-client": "~2.1.13"
+  },
+  "private": true
+}

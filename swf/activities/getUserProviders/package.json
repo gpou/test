@@ -1,0 +1,25 @@
+{
+  "name": "getUserProviders",
+  "version": "1.0.0",
+  "description": "",
+  "lambdaAttributes": {
+    "version": "58",
+    "timeout": "300",
+    "memorySize": "192"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocka"
+  },
+  "dependencies": {
+    "async": "~2.1.2",
+    "swagger-client": "~2.1.13",
+    "oauth": "~0.9.14",
+    "dotenv": "~2.0.0",
+    "lodash": "~4.17.2"
+  },
+  "devDependencies": {
+    "mocha": "~2.4.5"
+  },
+  "private": true
+}
