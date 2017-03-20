@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Decider description",
   "lambdaAttributes": {
-    "version": "46",
+    "version": "48",
     "timeout": "30",
     "memorySize": "192"
   },

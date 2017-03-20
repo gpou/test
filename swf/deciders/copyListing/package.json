@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Workflow to copy some fields from one listing or property to another listing or property",
   "lambdaAttributes": {
-    "version": "46",
+    "version": "48",
     "timeout": "30",
     "memorySize": "192"
   },

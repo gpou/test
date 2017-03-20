@@ -79,9 +79,31 @@ var prepare = module.exports.prepare = function(opts, callback) {
         if (!fs.existsSync(tmpFolder + '/deciders')) {
             fs.mkdirSync(tmpFolder + '/deciders');
         }
-        callback();
+        downloadSwagger(callback);
     });
 }
+
+var downloadSwagger = module.exports.downloadSwagger = function(callback) {
+  var file = fs.createWriteStream(tmpFolder + '/swagger.json');
+  // TODO: load this file from a specific branch in Vreasy repo (will need to be generated!)
+  var url = '/docs/swagger.json';
+  var httpLib = http;
+  switch(config.domain) {
+    case 'circle': url = "https://www.vreasy.com" + url; httpLib = https; break;
+    default: url = "http://www.vreasy.dev" + url;
+  }
+  console.log('Downloading swagger file from ' + url + ' into ' + tmpFolder + '/swagger.json');
+  var request = httpLib.get(url, function(response) {
+    response.pipe(file);
+    file.on('finish', function() {
+
+      file.close(callback);
+    });
+  }).on('error', function(err) {
+    fs.unlink(dest);
+    if (callback) cb(err.message);
+  });
+};
 
 var cleanup = module.exports.cleanup = function(callback) {
     deleteFolder(tmpFolder, callback);
@@ -146,9 +168,8 @@ var checkOauthCredentials = module.exports.checkOauthCredentials = function(call
     }
     var url = '/api/account?xoauth_requestor_id=1';
     var httpLib = http;
+    // FIXME: the checks should be done against stage or production, depending on the branch the PR is done against (stage or production)
     switch(config.domain) {
-      case 'production': url = "https://www.vreasy.com" + url; httpLib = https; break;
-      case 'staging': url = "https://stage.vreasy.com" + url; httpLib = https; break;
       case 'circle': url = "http://test.vreasy.com" + url; break;
       default: url = "http://www.vreasy.dev" + url;
     }
@@ -220,6 +241,7 @@ var zip = module.exports.zip = function(projectType, projectName, callback) {
     var folder = tmpFolder + '/' + projectFolder;
     var sedArgs = /^darwin/.test(process.platform) ? '-i \'\' -e' : '-i -e';
     var child = exec('cd ' + folder +
+        ' && rm -rf test' +
         ' && rm -rf node_modules/*' +
         ' && npm install --cache-min=Infinity --production --loglevel=error' +
         ' && npm prune --production' +
@@ -761,7 +783,7 @@ var fetchCodeChangesFromPR = module.exports.fetchCodeChangesFromPR = function(ca
         console.error(color.red('The environment variable GITHUB_ACCESS_TOKEN is undefined.'));
         console.error(color.red('Please add a personal access token to your GitHub account and set the ' +
             'GITHUB_ACCESS_TOKEN environment variable on your CircleCi project settings'));
-        cleanup();
+        //cleanup();
         process.exit(1);
     }
 
@@ -792,7 +814,7 @@ var fetchCodeChangesFromPR = module.exports.fetchCodeChangesFromPR = function(ca
                         if (err) {
                             console.error(color.red('Error while trying to get the list of files of the Pull Request from GitHub - ' + prUrl));
                             console.error(err);
-                            cleanup();
+                            //cleanup();
                             process.exit(1);
                         }
                         count = res.length;
@@ -859,7 +881,7 @@ var handleError = function(message, output, projectName, callback) {
     console.error(color.red(message));
     if (!continueOnFailure) {
         console.error(output);
-        cleanup();
+        //cleanup();
         process.exit(1);
     } else {
         callback(null, { message: message, output: output, projectName: projectName});

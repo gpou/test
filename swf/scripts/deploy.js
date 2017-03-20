@@ -91,7 +91,7 @@ if (registerCrons) {
 }
 
 async.series(series, function(err, results) {
-    Functions.cleanup();
+    //Functions.cleanup();
     console.log('');
     console.log('');
     console.log('-------------------------------------------');

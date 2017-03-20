@@ -136,7 +136,8 @@ module.exports = {
 
   initSwagger: function() {
     if (!this.swagger) {
-      var swaggerFile = __dirname + '/../../../../../../../worldhomes/public/docs/swagger.json';
+      var swaggerFile = __dirname + '/../../../../swagger.json';
+      console.log('   reading swagger from ' + swaggerFile);
       var swaggerSpec = JSON.parse(fs.readFileSync(swaggerFile, 'utf8'));
       this.swagger = new Swagger({
         url: 'http://foo.bar',

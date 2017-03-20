@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "lambdaAttributes": {
-    "version": "60",
+    "version": "62",
     "timeout": "300",
     "memorySize": "192"
   },

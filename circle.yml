@@ -1,0 +1,24 @@
+machine:
+  node:
+    version: 4.3.2
+  hosts:
+    test.vreasy.com: 127.0.0.1
+  environment:
+    APPLICATION_ENV: circle
+    LC_ALL: en_US.UTF-8
+    DEBIAN_FRONTEND: noninteractive
+dependencies:
+  cache_directories:
+    - ~/VrBackgrounder/node_modules/.cache
+    - /opt/circleci/nodejs
+  pre:
+    - sudo pip install awscli==1.8.2
+    - mkdir -p /home/ubuntu/VrBackgrounder/node_modules/.cache
+    - npm config set cache /home/ubuntu/VrBackgrounder/node_modules/.cache
+    - >
+      { { npm --version | grep -v 3.10.7 ;} && npm install --cache-min=Infinity --force -g npm@v3.10.7; } || echo "Required npm version 3.10.7 already installed for node 4.3.2"
+  override:
+    - cd swf/scripts && npm install --cache-min=Infinity
+test:
+  override:
+    - node swf/scripts/test.js --continueOnFailure --skipOauthCredentialsCheck

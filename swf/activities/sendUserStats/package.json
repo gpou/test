@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Sends the user stats to chargify and updates the sent_at field in Vreasy for a given userStats",
   "lambdaAttributes": {
-    "version": "94",
+    "version": "96",
     "timeout": "300",
     "memorySize": "256"
   },

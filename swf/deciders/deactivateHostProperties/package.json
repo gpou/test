@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "lambdaAttributes": {
-    "version": "118",
+    "version": "120",
     "timeout": "30",
     "memorySize": "192"
   },

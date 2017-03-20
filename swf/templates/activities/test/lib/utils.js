@@ -19,7 +19,8 @@ module.exports = {
       invokedFunctionArn: 'arn:aws:lambda:us-east-1:836897382102:function:activityMyActivity:circle'
     };
 
-    var swaggerFile = __dirname + '/../../../../../../../worldhomes/public/docs/swagger.json';
+    var swaggerFile = __dirname + '/../../../../swagger.json';
+    console.log('   reading swagger from ' + swaggerFile);
     var swaggerSpec = JSON.parse(fs.readFileSync(swaggerFile, 'utf8'));
 
     this.event = {

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Sends a notification for given listing",
   "lambdaAttributes": {
-    "version": "27",
+    "version": "29",
     "timeout": "30",
     "memorySize": "192"
   },

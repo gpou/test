@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Workflow to copy a listing to another listing",
   "lambdaAttributes": {
-    "version": "47",
+    "version": "49",
     "timeout": "30",
     "memorySize": "192"
   },
